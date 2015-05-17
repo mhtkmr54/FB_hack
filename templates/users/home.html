@@ -1,0 +1,95 @@
+{% load dajaxice_templatetags %}
+<html>
+  <head>
+    <title>Shaastra 2013</title>
+    {% dajaxice_js_import %}
+    <link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="{{site_url}}static/css/fbapp.css">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row-fluid">
+	<div class="navbar navbar-fixed-top navbar-inverse">
+	  <div class="navbar-inner">
+	    <div class="container">
+	      <ul class="nav">
+		<li><a href="http://www.shaastra.org/" target="_blank">Shaastra</a></li>
+		<li><a href="{{site_url}}fbapp/logout">Logout</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</div>
+      </div>
+      <div id="container" class="row-fluid">
+	<div class="span6">
+	  <div id="posts" class="row-fluid">
+	    <!--Body content-->
+	    <p class="text-info"> Click on a post to add likes/shares </p>
+	    <p><h3> Posts: </h3></p>
+	    <div class="accordion" id="accordion2">
+	      {% for p in posts %}
+	      <div class="accordion-group">
+		<div class="accordion-heading">
+		  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#post{{p.id}}">
+		  {{forloop.counter}} {{p.desc}} 
+		  </a>
+		</div>
+		<div id="post{{p.id}}" class="accordion-body collapse">
+		  <div class="accordion-inner">
+		  Link: <a href="{{p.link}}" target="_blank">Click Here</a> Likes:{{p.likes}}({{p.likes_given}}) Shares:{{p.shares_given}}({{p.shares_given}})<br>
+		  <strong> Add</strong>
+		  <form id="add{{p.id}}" action="{{site_url}}fbapp/likes/" method="POST">
+		    {% csrf_token %}
+		    {{ add_form.as_table }}
+		    <p><input type="hidden" id="id_pid" value="{{p.id}}" name="pid" /></p>
+		    <p><button type="submit" class="btn btn-primary"> Add </button></p>
+		  </form>
+		  </div>
+		</div>
+	      </div>
+	      {% endfor %}
+	    </div>
+	  </div>
+	</div>
+	<div class="span6">
+	  <div id="users" class="row-fluid">
+	  <!--Body content-->
+	  <p class="text-info"><i>The Users highlighted in Red have not given permissions to use their account.<br>
+	  Kindly notify them. In case the problem persists even after making the user "SIGN UP WITH FACEBOOK APP" again, contact the Webops Team.
+	  <table class="table table-hover">
+	    <thead>
+	      <tr>
+	      <th>#</th>
+	      <th>User</th>
+	      <th>Likes Used</th>
+	      <th>Shares Used</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	    {% for u in users %}
+	    {% if u.active == 1 %}
+	    <tr>
+	    {% else %}
+	    <tr class="error">
+	    {% endif %}
+	    <td>{{forloop.counter}}</td>
+	    <td>{{u.name}}<br><a href="http://www.facebook.com/{{u.facebook_id}}" target="_blank">Profile</a></td>
+	    <td>{{u.likes_used}}</td>
+	    <td>{{u.shares_used}}</td>
+	    </tr>
+	    {% endfor %}
+	    </tbody>
+	  </table>
+	  </div>
+	</div>
+      </div>
+    </div>
+    <script type="text/javascript" src="{{site_url}}static/js/jquery.dajax.core.js" charset = "utf-8"></script>
+    <script type="text/javascript" src="{{site_url}}static/js/jquery.js" charset = "utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{site_url}}static/scripts/bootstrap.min.js" charset = "utf-8"></script>
+    <script type="text/javascript">
+
+    </script>
+  </body>
+</html>

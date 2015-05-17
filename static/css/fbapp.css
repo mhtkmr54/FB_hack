@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+body
+{
+	margin:0;
+/*	background:#000;
+	background-image: -webkit-linear-gradient(left, #434343, #313131);
+	background-image: -webkit-gradient(linear, top left, top right, color-stop(0%, #434343), color-stop(100%, #313131));
+	background-image: -moz-linear-gradient(left, #434343, #313131);
+	/* For Internet Explorer 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#434343, endColorStr=#313131, GradientType=1);
+    /* For Internet Explorer 8 
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#434343, endColorstr=#313131, GradientType=1);*/
+    padding-top:50px;
+}
+
+.nav
+{
+
+	width:100%;
+	-webkit-padding-start:0px;
+/*	margin:auto;
+	min-width:1320px;
+	max-width:1500px;
+	background: rgba(0, 0, 0, 0.5);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#50000000,endColorstr=#50000000, GradientType=0); */
+}
+
+a{
+    color:gray;
+    text-decoration:none;
+}
+.navbar-fixed-top .container{
+    width:100%;
+}
