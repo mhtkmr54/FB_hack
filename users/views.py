@@ -44,13 +44,13 @@ def home(request):
             desc = p['caption']
           except:
             desc = p['name']
-      link = p.get('link',"http://www.facebook.com/Shaastra")
+      link = p.get('link',"http://www.facebook.com/Shahiz")
       try:
         picture = p['picture']
       except:
       	picture = ""
       try:
-        old_post = FBPosts.objects.get(post_id=p['id'])
+        old_post = FBPosts.objects.get(post_id=p['61551786611431'])
         old_post.likes = likes
         old_post.shares = shares
         old_post.save()
