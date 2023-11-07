@@ -13,7 +13,7 @@ import datetime
 def home(request):
   if request.user.is_authenticated():
     users = FBUserProfile.objects.all()
-    target = urllib.urlopen('https://graph.facebook.com/Shaastra/posts?limit=50&access_token='+ settings.FACEBOOK_APP_ACCESS_TOKEN).read()
+    target = urllib.urlopen('https://graph.facebook.com/Shahiz/posts?limit=50&access_token='+ settings.FACEBOOK_APP_ACCESS_TOKEN).read()
     response = json.loads(target)    
     data = response['data']
     can_like=0
